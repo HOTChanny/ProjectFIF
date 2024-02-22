@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorstEndScene.unity
     guid: 08bc3275b29ba4c4bb9a84751b740331
+  - enabled: 1
+    path: Assets/Scenes/BestEndScene.unity
+    guid: 9f6cb6d8908612f4cac80c0b0bd694e4
   m_configObjects: {}
