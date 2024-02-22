@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator anim;
 
-    
+    //public GameManager manager;
     
     void Awake()
     {

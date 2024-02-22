@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End_3_Scene.unity
     guid: 058d81ddff3690f47ae4fc913abb3ef4
+  - enabled: 1
+    path: Assets/Scenes/Hint_1_Scene.unity
+    guid: 15c37ed0a58002149a8b967afcf97dc8
+  - enabled: 1
+    path: Assets/Scenes/Hint_2_Scene.unity
+    guid: cbb3b2cb4b0722844bc0ee64bcacc38e
+  - enabled: 1
+    path: Assets/Scenes/Hint_3_Scene.unity
+    guid: 68111e2d9a671ce469e61815c52fdd2c
   m_configObjects: {}
