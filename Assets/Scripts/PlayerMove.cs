@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //방향전환
-        if(Input.GetButtonDown("Horizontal"))
+        if(Input.GetButton("Horizontal"))
         spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
 
         //애니메이션 전환(서있기<>걷기)
@@ -75,5 +75,33 @@ public class PlayerMove : MonoBehaviour
             }
         }
         
+    }
+     void OnCollisionEnter2D(Collision2D collision) // 플레이어 피격 이벤트
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            OnDamaged(collision.transform.position);
+        }
+        
+    }
+    void OnDamaged(Vector2 targetPos) // 맞았을 때, 레이어 바꿔서 적용하기
+    {
+        gameObject.layer = 11;
+
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
+        rigid.AddForce(new Vector2(dirc, 1)*7, ForceMode2D.Impulse);
+
+        //피격 애니메이션
+        anim.SetTrigger("doDamaged");
+
+        Invoke("OffDamaged", 2);
+    }
+
+    void OffDamaged() // 피격 후 2초 후에 레이어 원래대로
+    {
+        gameObject.layer = 10;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 }
