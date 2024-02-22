@@ -1,4 +1,4 @@
-# Fox In The Forest
+# Fox In The Forest2
 내일배움캠프 심화주차 개인과제
 
 ## 🖥️ 프로젝트 소개
