@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,6 +10,9 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
+
+    
+    
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -26,8 +30,8 @@ public class PlayerMove : MonoBehaviour
         }
 
         //방향전환
-        if(Input.GetButton("Horizontal"))
-        spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+        if (Input.GetButton("Horizontal"))
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
 
         //애니메이션 전환(서있기<>걷기)
         if (Mathf.Abs(rigid.velocity.x) < 0.48) // 속도가 얼마나 떨어졌을 때 모션이 바뀌는지
@@ -36,20 +40,28 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isWalking", true);
 
         //애니메이션 전환 - 점프
-        if (Input.GetKeyDown(KeyCode.Space)&& !anim.GetBool("isJumping"))
+        if (Input.GetKeyDown(KeyCode.Space) && !anim.GetBool("isJumping"))
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
         }
 
         //애니메이션 전환-공격 : q키를 눌렀을 때 어택 애니메이션이 실행되고 있지 않다면 트리거 진행
-        if (Input.GetKeyDown(KeyCode.Q)&& !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (Input.GetKeyDown(KeyCode.Q) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             anim.SetTrigger("attack");
+            gameObject.layer = 12;
+            Invoke("OnAttack", 1);
         }
-        
 
+        
     }
+    void OnAttack()
+    {
+        gameObject.layer = 10;
+    }
+
+
     void FixedUpdate()
     {
         //Move Speed

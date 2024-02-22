@@ -54,20 +54,15 @@ public class EnemyMove : MonoBehaviour
         Invoke("Think", 3);
     }
 
+    
     void OnCollisionEnter2D(Collision2D collision) // 몬스터 피격시, 공격 애니메이션 이벤트
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            anim.SetTrigger("doAttack");
-        }
-
-    }
-
-    void MonsterDestroy()
-    {
-        if (anim.GetBool("Attack"))
+        if (collision.gameObject.layer == 12)
         {
             Destroy(gameObject);
         }
+
     }
+
+    
 }
